@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AsyncVsBackgroundWorker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Async Task vs BackgroundWorker"
+        Width="400"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10">
+        <Button x:Name="AsyncTaskButton"
+                Content="Async Task"
+                Height="40"
+                Margin="0,0,0,10" />
+        <ProgressBar x:Name="AsyncTaskProgressBar"
+                     Height="20"
+                     Margin="0,0,0,30" />
+        <Button x:Name="BackgroundWorkerButton"
+                Content="BackgroundWorker"
+                Height="40"
+                Margin="0,0,0,10" />
+        <ProgressBar x:Name="BackgroundWorkerProgressBar"
+                     Height="20" />
+    </StackPanel>
 </Window>
