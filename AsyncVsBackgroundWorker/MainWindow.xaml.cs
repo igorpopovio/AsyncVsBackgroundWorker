@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -21,12 +20,12 @@ namespace AsyncVsBackgroundWorker
             });
 
             AsyncTaskButton.IsEnabled = false;
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 progress.Report(0);
                 foreach (var i in Enumerable.Range(1, 4))
                 {
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                     progress.Report(i * 25);
                 }
             });
