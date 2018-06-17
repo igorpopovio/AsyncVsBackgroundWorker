@@ -14,7 +14,8 @@
         <Button x:Name="AsyncTaskButton"
                 Content="Async Task"
                 Height="40"
-                Margin="0,0,0,10" />
+                Margin="0,0,0,10"
+                Click="AsyncTaskButton_Click" />
         <ProgressBar x:Name="AsyncTaskProgressBar"
                      Height="20"
                      Margin="0,0,0,30" />
