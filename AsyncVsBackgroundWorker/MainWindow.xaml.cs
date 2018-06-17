@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -30,6 +32,37 @@ namespace AsyncVsBackgroundWorker
                 }
             });
             AsyncTaskButton.IsEnabled = true;
+        }
+
+        private void BackgroundWorkerButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundWorkerButton.IsEnabled = false;
+            var backgroundWorker = new BackgroundWorker()
+            {
+                WorkerReportsProgress = true
+            };
+
+            backgroundWorker.DoWork += (s, args) =>
+            {
+                backgroundWorker.ReportProgress(0);
+                foreach (var i in Enumerable.Range(1, 4))
+                {
+                    Thread.Sleep(1000);
+                    backgroundWorker.ReportProgress(i * 25);
+                }
+            };
+
+            backgroundWorker.ProgressChanged += (s, args) =>
+            {
+                BackgroundWorkerProgressBar.Value = args.ProgressPercentage;
+            };
+
+            backgroundWorker.RunWorkerCompleted += (s, args) =>
+            {
+                BackgroundWorkerButton.IsEnabled = true;
+            };
+
+            backgroundWorker.RunWorkerAsync();
         }
     }
 }
